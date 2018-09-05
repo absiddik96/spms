@@ -1,0 +1,106 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+// Authentication Routes...
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login');
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+// Registration Routes...
+// $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+// $this->post('register', 'Auth\RegisterController@register');
+
+//.........SUPER ADMIN AREA..........
+Route::group(['prefix'=>'admin','middleware'=>'isSuperAdmin'], function(){
+    //.......dashboard
+    Route::get('dashboard', function () {
+        return view('super_admin.dash.index');
+    })->name('super.admin.dash');
+    //.......departments
+    Route::resource('department','SuperAdmin\Department\DepartmentsController');
+    //.......exam-room
+    Route::resource('exam-room','SuperAdmin\ExamRoom\ExamRoomsController');
+    Route::get('exam-rooms/{exam_season}','SuperAdmin\ExamRoom\ExamRoomsController@room_list')->name('super-admin.exam-room.list');
+    //.......exam-season
+    Route::resource('exam-season','SuperAdmin\ExamSeason\ExamSeasonsController');
+    //.......Admin & Super admin
+    Route::resource('user','SuperAdmin\User\AdminUsersController',['except'=>'show']);
+    Route::get('user/super-admin-list','SuperAdmin\User\AdminUsersController@super_admin_list')->name('super-admin.list');
+    Route::put('user/password/{id}','SuperAdmin\User\AdminUsersController@changePassword')->name('super-admin.user.changePassword');
+    Route::get('user/verify/{token}','SuperAdmin\User\AdminUsersController@verifyByAdmin')->name('super-admin.user.verifyByAdmin');
+    Route::get('user/active/{id}','SuperAdmin\User\AdminUsersController@active')->name('super-admin.user.active');
+    Route::get('user/deactive/{id}','SuperAdmin\User\AdminUsersController@deactive')->name('super-admin.user.deactive');
+});
+
+//.........ADMIN AREA..........
+//........admin login
+Route::get('admin/login','Admin\User\AdminUsersController@login')->name('admin.login');
+
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    //..........admin dash
+    Route::get('dash','Admin\Dash\AdminDashController@dash')->name('admin.dash');
+    //..........user role
+    Route::resource('user-role','Admin\Role\UserRolesController',['except'=>['create','show']]);
+    //..........user
+    Route::resource('users','Admin\User\AdminUsersController',['except'=>'show']);
+    Route::put('users/password/{id}','Admin\User\AdminUsersController@changePassword')->name('user.changePassword');
+    Route::get('users/verify/{token}','Admin\User\AdminUsersController@verifyByAdmin')->name('user.verifyByAdmin');
+    Route::get('users/admin/{id}','Admin\User\AdminUsersController@makeAdmin')->name('user.makeAdmin');
+    Route::get('users/regular/{id}','Admin\User\AdminUsersController@makeRegular')->name('user.makeRegular');
+    Route::get('users/active/{id}','Admin\User\AdminUsersController@active')->name('user.active');
+    Route::get('users/deactive/{id}','Admin\User\AdminUsersController@deactive')->name('user.deactive');
+
+    //.........batch
+    Route::resource('batch','Admin\Batch\BatchesController',['except'=>'show']);
+    //.........student
+    Route::resource('student', 'Admin\Student\StudentsController');
+    //.........semester
+    Route::resource('semester','Admin\Semester\SemestersController',['except'=>['create','show']]);
+    //.........course
+    Route::resource('course','Admin\Course\CoursesController',['except'=>'show']);
+    //.........teacher
+    Route::get('teacher','Admin\Teacher\TeachersController@index')->name('teacher.index');
+    //.........course enroll
+    Route::resource('course-enroll','Admin\CourseEnroll\CourseEnrollController',['show']);
+    Route::get('course-enroll/show','Admin\CourseEnroll\CourseEnrollController@show')->name('course-enroll.show');
+    //.........student enroll
+    Route::resource('student-enroll','Admin\StudentEnroll\StudentEnrollsController');
+    Route::get('student-enrolls/show','Admin\StudentEnroll\StudentEnrollsController@enrolls_show')->name('student-enrolls.show');
+    Route::get('student-enrolls/get_data','Admin\StudentEnroll\StudentEnrollsController@get_data_by_json_where_semester_id')->name('student-enrolls.get_data');
+    Route::get('student-enrolls/unroll','Admin\StudentEnroll\StudentEnrollsController@student_unroll')->name('student-enrolls.unroll');
+});
+
+//.........user common features
+Route::group(['prefix'=>'user'],function(){
+    //........dashboard
+    Route::get('/dash', 'User\Dash\UserDashController@dash')->name('user.dash');
+    //........user profile
+    Route::get('profile/{user_id}','User\Profile\ProfilesController@show')->name('profile.show');
+    //........user account
+    Route::get('account/setting/{user_id}','User\Account\AccountsController@setting')->name('account.setting');
+    Route::put('account/setting/{user_id}','User\Account\AccountsController@update')->name('account.update');
+    Route::put('account/password/{user_id}','User\Account\AccountsController@changePassword')->name('account.changePassword');
+    //........user personal info
+    Route::get('personal-info/{user_id}','User\PersonalInfo\PersonalInfosController@edit')->name('personal-info.edit');
+    Route::post('personal-info/{user_id}','User\PersonalInfo\PersonalInfosController@update')->name('personal-info.update');
+    Route::get('personal-info/profile-pic/{user_id}','User\PersonalInfo\PersonalInfosController@profilePic')->name('personal-info.profile-pic.edit');
+    Route::post('personal-info/profile-pic/{user_id}','User\PersonalInfo\PersonalInfosController@uploadProfilePic')->name('personal-info.profile-pic.upload');
+});
+
+//.........TEACHER
+Route::group(['prefix'=>'teacher'],function(){
+});
