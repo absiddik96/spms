@@ -19,9 +19,21 @@
                     @include('includes.errors')
                     <div class="form-horizontal">
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">Exam Season</label>
+                            <div class="col-sm-6">
+                                <select id="exam_season" class="form-control on_chng" name="exam_season">
+                                    <option value="">choose</option>
+                                    @foreach ($exam_seasons as $es)
+                                        <option value="{{ $es->id }}">{{ $es->exam_month.' '.$es->exam_year }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Semester</label>
                             <div class="col-sm-6">
-                                <select id="semester" name="semester_id" class="form-control select">
+                                <select id="semester" name="semester_id" class="form-control select on_chng">
                                     <option value="">Select Semester</option>
                                     @if ($semesteres)
                                         @foreach ($semesteres as $semester)
@@ -84,9 +96,10 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#semester').on('change', function () {
+            $('.on_chng').on('change', function () {
 
-                var semester_id = $(this).val();
+                var semester_id = $('#semester').val();
+                var exam_season_id = $('#exam_season').val();
                 if (semester_id == '') {
                     $('#unhide').prop('hidden', true);
                 } else {
@@ -94,7 +107,7 @@
                     $.ajax({
                         url: "{{ route('student-enrolls.get_data') }}",
                         type: "get",
-                        data: {'semester_id': semester_id},
+                        data: {'semester_id': semester_id,'exam_season_id': exam_season_id},
                         dataType: "json",
                         success: function (data) {
                             $('#show_data').html(data);
@@ -111,10 +124,12 @@
     <script>
         function unroll(elmnt, enroll_id) {
             var semester_id = $('#semester').val();
+            var exam_season_id = $('#exam_season').val();
+
             $.ajax({
                 url: "{{ route('student-enrolls.unroll') }}",
                 type: "get",
-                data: {'enroll_id': enroll_id , 'semester_id': semester_id},
+                data: {'enroll_id': enroll_id , 'semester_id': semester_id,'exam_season_id': exam_season_id},
                 dataType: "json",
                 success: function (data) {
                     $('#unhide').prop('hidden', false);
@@ -131,12 +146,14 @@
         function unrolls() {
 
             var semester_id = $('#semester').val();
+            var exam_season_id = $('#exam_season').val();
+
             var enroll_id = $("input[name='student_id[]']")
                 .map(function(){return $(this).val();}).get();
             $.ajax({
                 url: "{{ route('student-enrolls.unroll') }}",
                 type: "get",
-                data: {'enroll_id': enroll_id , 'semester_id': semester_id},
+                data: {'enroll_id': enroll_id , 'semester_id': semester_id,'exam_season_id': exam_season_id},
                 dataType: "json",
                 success: function (data) {
                     $('#unhide').prop('hidden', false);
@@ -162,10 +179,12 @@
             if(enroll_id)
             {
                 var semester_id = $('#semester').val();
+                var exam_season_id = $('#exam_season').val();
+
                 $.ajax({
                     url: "{{ route('student-enrolls.unroll') }}",
                     type: "get",
-                    data: {'enroll_id': enroll_id , 'semester_id': semester_id},
+                    data: {'enroll_id': enroll_id , 'semester_id': semester_id,'exam_season_id': exam_season_id},
                     dataType: "json",
                     success: function (data) {
                         $('#unhide').prop('hidden', false);

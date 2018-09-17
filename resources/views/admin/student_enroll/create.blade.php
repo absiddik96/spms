@@ -19,6 +19,19 @@
                         {{ csrf_field() }}
 
                         @include('includes.errors')
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Exam Season</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="exam_season">
+                                    <option value="">choose</option>
+                                    @foreach ($exam_seasons as $es)
+                                        <option value="{{ $es->id }}">{{ $es->exam_month.' '.$es->exam_year }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Semester</label>
                             <div class="col-sm-6">
@@ -32,7 +45,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Batch</label>
                             <div class="col-sm-6">
