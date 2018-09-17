@@ -59,67 +59,7 @@
                                 <input type="text" name="reg_no" class="form-control" value="{{ old('reg_no') }}">
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Gender</label>
-                            <div class="col-sm-6">
-                                <select name="gender" class="form-control" required>
-                                    <option value="">Select Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                    <option value="3">Other's</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Phone</label>
-                            <div class="col-sm-6">
-                                <input type="number" name="phone" class="form-control" value="{{ old('phone') }}" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Blood Group</label>
-                            <div class="col-sm-6">
-                                <select class="form-control" name="blood_group" required>
-                                    <option value="">Select Blood Group</option>
-                                    <option value="A Positive">A Positive</option>
-                                    <option value="A Negative">A Negative</option>
-                                    <option value="B Positive">B Positive</option>
-                                    <option value="B Negative">B Negative</option>
-                                    <option value="AB Positive">AB Positive</option>
-                                    <option value="AB Negative">AB Negative</option>
-                                    <option value="O Positive">O Positive</option>
-                                    <option value="O Negative">O Negative</option>
-                                    <option value="Unknown">Unknown</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Image</label>
-                            <div class="col-sm-6">
-                                <input class="fileinput btn-primary" type="file" name="image" value="">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Guardian</label>
-                            <div class="col-sm-6">
-                                <input type="text" name="guardian" class="form-control" value="{{ old('guardian') }}" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Guardian Contact</label>
-                            <div class="col-sm-6">
-                                <input type="text" name="guardian_contact" class="form-control" value="{{ old('guardian_contact') }}" required>
-                            </div>
-                        </div>
-
-
-
+                        
                         <div class="form-group">
                             <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-6">

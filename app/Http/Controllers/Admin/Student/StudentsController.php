@@ -22,8 +22,7 @@ class StudentsController extends Controller
     public function index()
     {
         return view('admin.student.index')
-                ->with('students', Student::select('id', 'image', 'batch_id','reg_no','class_roll','exam_roll', 'name', 'email')
-                ->get());
+                ->with('students', Student::where('department_id',Auth::user()->department_id)->get());
     }
 
     /**
@@ -34,7 +33,7 @@ class StudentsController extends Controller
     public function create()
     {
         return view('admin.student.create')
-        ->with('batches', Batch::all())
+        ->with('batches', Batch::where('department_id',Auth::user()->department_id)->get())
         ->with('default_password', Student::DEFAULT_PASSWORD);
     }
 
@@ -48,20 +47,9 @@ class StudentsController extends Controller
     {
         $input = $request->all();
 
-        if ($image = $request->file('image')) {
-            $new_name       = str_slug($request->reg_no) . time() . '.' .$image->getClientOriginalExtension();
-            $input['image'] = $new_name;
-            //........processing image to storage
-            $img = Image::make($image->getRealPath());
-            $img->resize(240, 320, function ($constraint) {});
-            $img->stream();
-            //........saving to studen disk
-            Storage::disk('student')->put($new_name, $img,'public');
-        }
-
         $input['name']       = ucwords($request->name);
-        $input['guardian']   = ucwords($request->guardian);
         $input['password']   = bcrypt($request->password);
+        $input['department_id']   = Auth::user()->department_id;
         $input['user_id']    = Auth::user()->user_id;
         $input['is_present'] = Student::PRESENT_STUDENT;
 
@@ -75,18 +63,6 @@ class StudentsController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Student $student)
-    {
-        return view('admin.student.view')
-                ->with('student', $student);
-    }
-
-    /**
     * Show the form for editing the specified resource.
     *
     * @param  int  $id
@@ -96,7 +72,7 @@ class StudentsController extends Controller
     {
         return view('admin.student.edit')
                 ->with('student', $student)
-                ->with('batches', Batch::all());
+                ->with('batches', Batch::where('department_id',Auth::user()->department_id)->get());
     }
 
     /**
@@ -115,16 +91,6 @@ class StudentsController extends Controller
         ]);
 
         $input = $request->all();
-
-        if ($image = $request->file('image')) {
-            $input['image'] = $student->image;
-            //........processing image to storage
-            $img = Image::make($image->getRealPath());
-            $img->resize(240, 320, function ($constraint) {});
-            $img->stream();
-            //........saving to studen disk
-            Storage::disk('student')->put($student->image, $img,'public');
-        }
 
         //..........manipulate password
         if ($request->password) {
@@ -156,8 +122,6 @@ class StudentsController extends Controller
     public function destroy(Student $student)
     {
         if ($student->delete()) {
-            //......delete file form disk
-            Storage::disk('student')->delete($student->image);
             Session::flash('success', 'Student delete successfull');
         } else {
             Session::flash('fail', 'Student delete failed');

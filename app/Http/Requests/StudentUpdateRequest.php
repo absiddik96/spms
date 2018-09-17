@@ -28,12 +28,6 @@ class StudentUpdateRequest extends FormRequest
                 'name' => 'required|min:2|max:100',
                 'batch_id' => 'required',
                 'exam_roll' => 'required',
-                'gender' => 'required',
-                'phone' => 'required|min:8',
-                'blood_group' => 'required',
-                'image' => 'image|max:1000|mimes:png,jpeg,jpg',
-                'guardian' => 'required',
-                'guardian_contact' => 'required|min:8',
                 'password' => 'confirmed',
                 'is_active' => 'required|in:'. Student::ACTIVE_STUDENT . ',' . Student::DEACTIVE_STUDENT,
         ];

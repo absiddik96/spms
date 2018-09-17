@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     <table class="table datatable">
                         <thead>
-                            <th>Image</th>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Batch</th>
                             <th>Reg No</th>
@@ -20,11 +20,14 @@
                             <th>Action</th>
                         </thead>
                         <tbody>
+                            @php
+                                $i = 1
+                            @endphp
 
                             @if ($students)
                                 @foreach ($students as $student)
                                     <tr>
-                                        <td><img width="64" height="64" src="{{asset('storage/student/'.$student->image)}}" alt="No Image"></td>
+                                        <td>{{ $i++ }}</td>
                                         <td>{{ $student->name }}</td>
                                         <td>{{ $student->batch->batch_number}}</td>
                                         <td>{{ $student->reg_no}}</td>
@@ -34,8 +37,6 @@
                                         <td>
                                             <form action="{{ route('student.destroy', $student->id) }}" method="post">
                                                 {{ csrf_field() }} {{ method_field('delete') }}
-
-                                                <a class="btn btn-success" href="{{ route('student.show', $student->id) }}"><span class="fa fa-eye"> View</span></a>
                                                 <a class="btn btn-primary" href="{{ route('student.edit', $student->id) }}"><span class="fa fa-edit"> Edit</span></a>
 
                                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ $student->id }}"><span class="glyphicon glyphicon-trash"></span>Delete</button>
