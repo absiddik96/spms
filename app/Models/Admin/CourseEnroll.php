@@ -16,4 +16,12 @@ class CourseEnroll extends Model
     {
         return $this->belongsTo('App\User','teacher_id','user_id');
     }
+
+    /**
+     * Get the ExamSeason that owns the model.
+     */
+    public function examSeason()
+    {
+        return $this->belongsTo(ExamSeason::class);
+    }
 }
