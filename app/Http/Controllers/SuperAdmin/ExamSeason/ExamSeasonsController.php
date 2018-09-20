@@ -38,9 +38,14 @@ class ExamSeasonsController extends Controller
      */
     public function store(Request $request)
     {
+        $request['slug'] = str_slug($request->exam_month.' '.$request->exam_year);
+
         $this->validate($request, [
             'exam_month' => 'required',
             'exam_year' => 'required|numeric',
+            'slug'  => 'unique:exam_seasons',
+        ],[
+            'slug.unique' => 'The exam season has already been taken.',
         ]);
 
         $exam_season = new ExamSeason();
@@ -91,9 +96,14 @@ class ExamSeasonsController extends Controller
      */
     public function update(Request $request,ExamSeason $exam_season)
     {
+        $request['slug'] = str_slug($request->exam_month.' '.$request->exam_year);
+
         $this->validate($request, [
             'exam_month' => 'required',
             'exam_year' => 'required|numeric',
+            'slug'  => 'unique:exam_seasons,slug,'.$exam_season->id,
+        ],[
+            'slug.unique' => 'The exam season has already been taken.',
         ]);
 
         $exam_season->supervisor_id = Auth::user()->user_id;
