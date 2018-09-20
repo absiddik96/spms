@@ -72,6 +72,7 @@
                         <a href="{{ route('user.dash') }}">Home</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
+                        <a href="{{ url('admin/login') }}">Admin Login</a>
                     @endif
                 </div>
             @endif

@@ -88,6 +88,22 @@
                     </ul>
                 </li>
 
+                <li class="xn-openable">
+                    <a href="#"><span class="fa fa-group"></span> <span class="xn-text">Exam Shift & Time</span></a>
+                    <ul>
+                        <li><a href="{{route('shift-time.create')}}"><span class="fa fa-plus"></span>Create Exam Shift & Time</a></li>
+                        <li><a href="{{route('shift-time.index')}}"><span class="fa fa-list"></span>Exam Shift & Time List</a></li>
+                    </ul>
+                </li>
+
+                <li class="xn-openable">
+                    <a href="#"><span class="fa fa-group"></span> <span class="xn-text">Exam Date</span></a>
+                    <ul>
+                        <li><a href="{{route('exam-date.create')}}"><span class="fa fa-plus"></span>Create Exam Date</a></li>
+                        <li><a href="{{route('exam-date.index')}}"><span class="fa fa-list"></span>Exam Date List</a></li>
+                    </ul>
+                </li>
+
                 {{-- ------------------------------------------------------
                 Left Menu Bar end
                 ------------------------------------------------------------  --}}
@@ -180,11 +196,11 @@
 <script type='text/javascript' src="{{asset('admin/js/plugins/icheck/icheck.min.js')}}"></script>
 <script type='text/javascript' src="{{asset('admin/js/plugins/bootstrap/bootstrap-file-input.js')}}"></script>
 <script type='text/javascript' src="{{asset('admin/js/plugins/summernote/summernote.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{asset('admin/js/plugins/bootstrap/bootstrap-select.js') }}"></script>
 
 <script type='text/javascript' src="{{asset('admin/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>
 <!-- END THIS PAGE PLUGINS-->
 
 

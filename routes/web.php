@@ -30,13 +30,17 @@ Route::group(['prefix'=>'admin','middleware'=>'isSuperAdmin'], function(){
     Route::get('dashboard', function () {
         return view('super_admin.dash.index');
     })->name('super.admin.dash');
+
     //.......departments
     Route::resource('department','SuperAdmin\Department\DepartmentsController');
+
     //.......exam-room
     Route::resource('exam-room','SuperAdmin\ExamRoom\ExamRoomsController');
     Route::get('exam-rooms/{exam_season}','SuperAdmin\ExamRoom\ExamRoomsController@room_list')->name('super-admin.exam-room.list');
+
     //.......exam-season
     Route::resource('exam-season','SuperAdmin\ExamSeason\ExamSeasonsController');
+
     //.......Admin & Super admin
     Route::resource('user','SuperAdmin\User\AdminUsersController',['except'=>'show']);
     Route::get('user/super-admin-list','SuperAdmin\User\AdminUsersController@super_admin_list')->name('super-admin.list');
@@ -44,6 +48,13 @@ Route::group(['prefix'=>'admin','middleware'=>'isSuperAdmin'], function(){
     Route::get('user/verify/{token}','SuperAdmin\User\AdminUsersController@verifyByAdmin')->name('super-admin.user.verifyByAdmin');
     Route::get('user/active/{id}','SuperAdmin\User\AdminUsersController@active')->name('super-admin.user.active');
     Route::get('user/deactive/{id}','SuperAdmin\User\AdminUsersController@deactive')->name('super-admin.user.deactive');
+
+    //.......exam/shift-times
+    Route::resource('exam/shift-time','SuperAdmin\ExamShiftTime\ExamShiftTimeController');
+
+    //.......exam-date
+    Route::resource('exam-date','SuperAdmin\ExamDate\ExamDatesController');
+    Route::get('exam-date-by-season','SuperAdmin\ExamDate\ExamDatesController@getExamDate')->name('exam-date.by-season');
 });
 
 //.........ADMIN AREA..........
