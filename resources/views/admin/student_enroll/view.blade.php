@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Create Student Enroll</h3>
+                    <h3>Student Enroll</h3>
                 </div>
 
                 <div class="panel-body">

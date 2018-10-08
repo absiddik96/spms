@@ -41,9 +41,9 @@ class CourseEnrollController extends Controller
         }
         return view('admin.courseEnroll.create')
         ->with('exam_seasons', ExamSeason::all())
-        ->with('semesters', Semester::where('department_id',Auth::user()->department_id)->pluck('semester','id')->all())
-        ->with('courses', Course::where('department_id',Auth::user()->department_id)->pluck('name','id')->all())
-        ->with('teachers', $teacher_role->users);
+        ->with('semesters', Semester::where('department_id',Auth::user()->department_id)->orderBy('semester')->pluck('semester','id')->all())
+        ->with('courses', Course::where('department_id',Auth::user()->department_id)->orderBy('name')->pluck('name','id')->all())
+        ->with('teachers', User::where('role_id',$teacher_role->id)->orderBy('name')->get());
     }
 
     /**

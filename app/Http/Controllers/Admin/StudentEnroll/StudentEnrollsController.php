@@ -20,7 +20,7 @@ class StudentEnrollsController extends Controller
 		if ($batch_id == null) {
 			return redirect()->route('student-enroll.create');
 		}
-		$students = Student::select('students.id', 'students.batch_id', 'students.reg_no', 'students.exam_roll', 'students.name', 'students.email')
+		$students = Student::select('students.id', 'students.batch_id', 'students.reg_no', 'students.exam_roll', 'students.name', 'students.email')->where('students.department_id',Auth::user()->department_id)
 		->leftJoin('student_enrolls', 'students.id', '=', 'student_enrolls.student_id')->whereNull('student_enrolls.student_id')->where('students.batch_id', $batch_id)->get();
 
 		$jsonData = '';

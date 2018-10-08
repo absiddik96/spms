@@ -93,6 +93,12 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('student-enrolls/show','Admin\StudentEnroll\StudentEnrollsController@enrolls_show')->name('student-enrolls.show');
     Route::get('student-enrolls/get_data','Admin\StudentEnroll\StudentEnrollsController@get_data_by_json_where_semester_id')->name('student-enrolls.get_data');
     Route::get('student-enrolls/unroll','Admin\StudentEnroll\StudentEnrollsController@student_unroll')->name('student-enrolls.unroll');
+
+    //.........student room enroll
+    Route::resource('student-room-enroll','Admin\StudentRoomEnroll\StudentRoomEnrollsController');
+    Route::get('student-room-enrolls/show','Admin\StudentRoomEnroll\StudentRoomEnrollsController@enrolls_show')->name('student-room-enrolls.show');
+    Route::get('student-room-enrolls/get_data','Admin\StudentRoomEnroll\StudentRoomEnrollsController@get_data_by_json_where_semester_id')->name('student-room-enrolls.get_data');
+    Route::get('student-room-enrolls/unroll','Admin\StudentRoomEnroll\StudentRoomEnrollsController@student_unroll')->name('student-room-enrolls.unroll');
 });
 
 //.........user common features
@@ -114,4 +120,11 @@ Route::group(['prefix'=>'user'],function(){
 
 //.........TEACHER
 Route::group(['prefix'=>'teacher'],function(){
+});
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('ajax/exam-rooms/exam-season', 'AjaxData\AjaxDatasController@examRoomsByExamSeason')->name('ajax.exam.rooms.season');
+    Route::get('ajax/exam-dates/exam-season', 'AjaxData\AjaxDatasController@examDatesByExamSeason')->name('ajax.exam.dates.season');
+    Route::get('ajax/exam-shift-time/exam-season', 'AjaxData\AjaxDatasController@examShifttimeByExamSeason')->name('ajax.exam.shift-time.season');
+    Route::get('ajax/exam-courses/exam-season-semester', 'AjaxData\AjaxDatasController@examCoursesByExamSeasonSemester')->name('ajax.exam.courses.season.semester');
 });

@@ -25,7 +25,7 @@
                                         <td>{{$sl_no}}</td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>{{$user->role_id?$user->role->name:''}}</td>
+                                        <td>{{$user->role_id?$user->role->name:'Default (Admin)'}}</td>
                                         <td>
                                             <label for="">{{$user->isActive()?'Active':'Deactive'}} ({{$user->isAdmin()?'Admin':'Regular'}})</label>
                                             @if (!$user->isVerified())

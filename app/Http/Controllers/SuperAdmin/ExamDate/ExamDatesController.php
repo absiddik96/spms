@@ -18,11 +18,14 @@ class ExamDatesController extends Controller
     public function index(Request $request)
     {
         $eds = '';
+        $exam_season ='';
         if ($request->exam_season) {
             $eds = ExamDate::where('exam_season_id', $request->exam_season)->orderBy('exam_date')->get();
+            $exam_season = ExamSeason::find($request->exam_season);
         }
         return view('super_admin.exam_date.index')
         ->with('eds', $eds)
+        ->with('exam_season', $exam_season)
         ->with('exam_seasons',ExamSeason::orderBy('exam_year','desc')->get());
     }
 
