@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Student Login</title>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{!! asset('login/style.css') !!}">
+
     </head>
 
     <body>
@@ -19,8 +21,8 @@
                     <img src="{!! asset('images/logo/gb_logo.png') !!}" width="80px" alt="User Icon" />
                 </div>
                 <div style="line-height:0px">
-                    <h2 class="active">Gono Bishwabidyalay</h2><br>
-                    <h2 class="active">Seat Plan Management System</h2>
+                    <h2 class="heading">Gono Bishwabidyalay</h2><br>
+                    <h2 class="heading">Seat Plan Management System</h2>
                 </div>
                 <br>
                 <a class="a-active " href="">Student</a>
@@ -29,9 +31,29 @@
                 <small>Student Login</small>
 
                 <!-- Login Form -->
-                <form>
-                    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email">
-                    <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password">
+                <form method="POST" action="{{ route('student.login.submit') }}">
+                    {{ csrf_field() }}
+                    @if ($errors->has('active'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('active') }}</strong>
+                        </span>
+                    @endif
+                    <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <input type="email" id="email" class="fadeIn second input-box" value="{{ old('email') }}" name="email" placeholder="Email" required autofocus><br>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <input type="password" id="password" class="fadeIn third input-box" name="password" placeholder="Password">
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
                     <input type="submit" class="btn btn-primary" value="Log In">
                 </form>
 

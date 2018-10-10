@@ -60,6 +60,18 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest('login');
+        $quard = array_get($exception->guards(),0);
+
+        switch ($quard) {
+            case 'student':
+                $login = 'student.login';
+                break;
+
+            default:
+                $login = 'login';
+                break;
+        }
+
+        return redirect()->guest(route($login));
     }
 }

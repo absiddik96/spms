@@ -11,23 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-// Testing
-Route::get('student/login', function () {
-    return view('auth.student_login');
-});
-
-
-
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
-// Registration Routes...
-// $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-// $this->post('register', 'Auth\RegisterController@register');
+
+//........admin login
+Route::get('admin/login','Admin\User\AdminUsersController@login')->name('admin.login');
+
+//........Student login
+Route::get('/', 'Auth\StudentLoginController@showLoginForm')->name('student.login');
+Route::post('student/login/submit', 'Auth\StudentLoginController@login')->name('student.login.submit');
 
 //.........SUPER ADMIN AREA..........
 Route::group(['prefix'=>'admin','middleware'=>'isSuperAdmin'], function(){
@@ -63,10 +57,7 @@ Route::group(['prefix'=>'admin','middleware'=>'isSuperAdmin'], function(){
 });
 
 //.........ADMIN AREA..........
-//........admin login
-Route::get('admin/login','Admin\User\AdminUsersController@login')->name('admin.login');
-
-Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+Route::group(['prefix'=>'admin','middleware'=>'isAdmin'],function(){
     //..........admin dash
     Route::get('dash','Admin\Dash\AdminDashController@dash')->name('admin.dash');
     //..........user role
@@ -106,8 +97,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('student-room-enrolls/unroll','Admin\StudentRoomEnroll\StudentRoomEnrollsController@student_unroll')->name('student-room-enrolls.unroll');
 });
 
-//.........user common features
-Route::group(['prefix'=>'user'],function(){
+//.........Teacher common features
+Route::group(['prefix'=>'teacher'],function(){
     //........dashboard
     Route::get('/dash', 'User\Dash\UserDashController@dash')->name('user.dash');
     //........user profile
@@ -123,8 +114,13 @@ Route::group(['prefix'=>'user'],function(){
     Route::post('personal-info/profile-pic/{user_id}','User\PersonalInfo\PersonalInfosController@uploadProfilePic')->name('personal-info.profile-pic.upload');
 });
 
-//.........TEACHER
-Route::group(['prefix'=>'teacher'],function(){
+//.........Student
+Route::group(['prefix'=>'student'],function(){
+    Route::get('dashboard', 'Student\StudentProfilesController@dashboard')->name('student.dash');
+    Route::get('profile', 'Student\StudentProfilesController@profile')->name('student.profile');
+    // Change Password
+    Route::get('change-password', 'Student\StudentProfilesController@changePassword')->name('student.change-password');
+    Route::post('change-password', 'Student\StudentProfilesController@changePasswordSubmit')->name('student.change-password.submit');
 });
 
 Route::group(['middleware'=>'auth'],function(){
