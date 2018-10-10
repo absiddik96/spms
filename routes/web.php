@@ -14,6 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+// Testing
+Route::get('student/login', function () {
+    return view('auth.student_login');
+});
+
 
 
 // Authentication Routes...
