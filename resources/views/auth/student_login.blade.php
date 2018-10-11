@@ -33,16 +33,16 @@
                 <!-- Login Form -->
                 <form method="POST" action="{{ route('student.login.submit') }}">
                     {{ csrf_field() }}
-                    @if ($errors->has('active'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('active') }}</strong>
-                        </span>
-                    @endif
-                    <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="{{ $errors->has('email') || $errors->has('active') ? ' has-error' : '' }}">
                         <input type="email" id="email" class="fadeIn second input-box" value="{{ old('email') }}" name="email" placeholder="Email" required autofocus><br>
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                        @if ($errors->has('active'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('active') }}</strong>
                             </span>
                         @endif
                     </div>
