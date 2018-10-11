@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="{!! asset('images/logo/gb_logo.png') !!}" type="image/x-icon" />
     <!-- END META SECTION -->
 
     <!-- CSS INCLUDE -->
@@ -52,8 +52,13 @@
                 <li>
                     <a href="{{route('student.dash')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
                 </li>
+
                 <li>
                     <a href="{{route('student.profile')}}"><span class="fa fa-user"></span> <span class="xn-text">Profile</span></a>
+                </li>
+
+                <li>
+                    <a href="{{route('student.seat.plan.season')}}"><span class="fa fa-list"></span> <span class="xn-text">Seat Plan</span></a>
                 </li>
 
                 {{-- <li class="xn-openable">

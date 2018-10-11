@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\Student\StudentProfile;
 
 use Auth;
 use Session;

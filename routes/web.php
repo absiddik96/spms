@@ -119,11 +119,14 @@ Route::group(['prefix'=>'teacher'],function(){
 
 //.........Student
 Route::group(['prefix'=>'student'],function(){
-    Route::get('dashboard', 'Student\StudentProfilesController@dashboard')->name('student.dash');
-    Route::get('profile', 'Student\StudentProfilesController@profile')->name('student.profile');
+    Route::get('dashboard', 'Student\StudentProfile\StudentProfilesController@dashboard')->name('student.dash');
+    Route::get('profile', 'Student\StudentProfile\StudentProfilesController@profile')->name('student.profile');
     // Change Password
-    Route::get('change-password', 'Student\StudentProfilesController@changePassword')->name('student.change-password');
-    Route::post('change-password', 'Student\StudentProfilesController@changePasswordSubmit')->name('student.change-password.submit');
+    Route::get('change-password', 'Student\StudentProfile\StudentProfilesController@changePassword')->name('student.change-password');
+    Route::post('change-password', 'Student\StudentProfile\StudentProfilesController@changePasswordSubmit')->name('student.change-password.submit');
+    // student seat plan
+    Route::get('seat-plan/exam-season', 'Student\SeatPlan\SeatPlansController@examSeason')->name('student.seat.plan.season');
+    Route::get('seat-plan/{season_id}', 'Student\SeatPlan\SeatPlansController@seatPlan')->name('student.seat.plan');
 });
 
 Route::group(['middleware'=>'auth'],function(){
