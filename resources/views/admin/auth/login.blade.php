@@ -1,119 +1,66 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Admin Login</title>
-    <style media="screen">
-    body{
-        background: black;
-        font-family: 'Open Sans', sans-serif;
-        background-repeat: no-repeat;
-        /* background:#3498db; */
-        margin: 0 auto 0 auto;
-        width:100%;
-        height: 100%;
-        margin: 70px 0px 20px 0px;
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin Login</title>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{!! asset('login/style.css') !!}">
 
-    }
+    </head>
 
+    <body>
+        <div class="wrapper-s">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <!-- <h2 class="active"> Sign In </h2>
+                <h2 class="inactive underlineHover">Sign Up </h2> -->
 
-    .box{
-        background:white;
-        width:500px;
-        border-radius:6px;
-        margin: 0 auto 0 auto;
-        padding:20px 0px 70px 0px;
-        border: #2980b9 4px solid;
-    }
+                <!-- Icon -->
+                <br>
+                <div class="fadeIn first">
+                    <img src="{!! asset('images/logo/gb_logo.png') !!}" width="80px" alt="User Icon" />
+                </div>
+                <div style="line-height:0px">
+                    <h2 class="heading">Gono Bishwabidyalay</h2><br>
+                    <h2 class="heading">Seat Plan Management System</h2>
+                </div>
+                <br>
+                <b>Admin Login</b>
 
-    .email{
-        background:#ecf0f1;
-        border: #ccc 1px solid;
-        border-bottom: #ccc 2px solid;
-        padding: 8px;
-        width:250px;
-        color:#AAAAAA;
-        margin-top:10px;
-        font-size:1em;
-        border-radius:4px;
-    }
-
-
-
-    .btn{
-        background:#2ecc71;
-        width:125px;
-        padding-top:5px;
-        padding-bottom:5px;
-        color:white;
-        border-radius:4px;
-        border: #27ae60 1px solid;
-
-        margin-top:20px;
-        margin-bottom:20px;
-        float:left;
-        margin-left:16px;
-        font-weight:800;
-        font-size:0.8em;
-    }
-
-    .btn:hover{
-        background:#2CC06B;
-    }
-
-    #btn2{
-        float:left;
-        background:#3498db;
-        width:125px;  padding-top:5px;
-        padding-bottom:5px;
-        color:white;
-        border-radius:4px;
-        border: #2980b9 1px solid;
-
-        margin-top:20px;
-        margin-bottom:20px;
-        margin-left:10px;
-        font-weight:800;
-        font-size:0.8em;
-    }
-
-    #btn2:hover{
-        background:#3594D2;
-    }
-    </style>
-</head>
-<body>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
-
-    <div class="box">
-        <h3 style="text-align:center;">Admin Login</h3>
-        <hr>
-        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-            {{ csrf_field() }}
-            <div class="" style="padding:20px;">
-                @if (count($errors))
-                    <div class="" style="background:red;color:white;padding:3px">
-                        <ol>
-                            @foreach ($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ol>
+                <!-- Login Form -->
+                <form method="POST" action="{{ route('login') }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="admin_login" value="1">
+                    @if ($errors->has('active'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('active') }}</strong>
+                        </span>
+                    @endif
+                    <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <input type="email" id="email" class="fadeIn second input-box" value="{{ old('email') }}" name="email" placeholder="Email" required autofocus><br>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
                     </div>
-                @endif
-                <input type="hidden" name="admin_login" value="1">
-                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-                <br>
-                <input id="email" type="email" class="email" name="email" value="{{ old('email') }}" required autofocus>
-                <br>
-                <label for="password" >Password</label>
-                <br>
-                <input id="password" type="password" class="email" name="password" required>
+                    <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <input type="password" id="password" class="fadeIn third input-box" name="password" placeholder="Password">
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Log In">
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <a class="underlineHover" href="#">Forgot Password?</a>
+                </div>
+
             </div>
-            <button type="submit" class="btn">Login</button>
-        </form>
-
-    </div> <!-- End Box -->
-
-
-</body>
+        </div>
+    </body>
 </html>

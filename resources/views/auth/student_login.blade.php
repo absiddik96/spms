@@ -26,7 +26,7 @@
                 </div>
                 <br>
                 <a class="a-active " href="">Student</a>
-                <a class="a-btn" href="">Teacher</a>
+                <a class="a-btn" href="{!! route('login') !!}">Teacher</a>
                 <br>
                 <small>Student Login</small>
 

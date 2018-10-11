@@ -39,6 +39,11 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    public function showLoginForm()
+    {
+    	return view('auth.teacher_login');
+    }
+
     public function login(\Illuminate\Http\Request $request) {
         $this->validateLogin($request);
 
