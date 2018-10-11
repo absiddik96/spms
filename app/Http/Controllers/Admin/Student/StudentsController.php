@@ -21,8 +21,19 @@ class StudentsController extends Controller
     */
     public function index()
     {
+        return view('admin.student.batch_list')
+                ->with('batches', Batch::where('department_id',Auth::user()->department_id)->orderBy('batch_number','desc')->get());
+    }
+
+    public function studentsList($batch_id)
+    {
+        $students = Student::where('department_id',Auth::user()->department_id)->where('batch_id', $batch_id)->get();
+        if (!$students->count()) {
+            Session::flash('info','No student found');
+            return redirect()->back();
+        }
         return view('admin.student.index')
-                ->with('students', Student::where('department_id',Auth::user()->department_id)->get());
+                ->with('students', $students);
     }
 
     /**

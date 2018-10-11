@@ -75,6 +75,9 @@ Route::group(['prefix'=>'admin','middleware'=>'isAdmin'],function(){
     Route::resource('batch','Admin\Batch\BatchesController',['except'=>'show']);
     //.........student
     Route::resource('student', 'Admin\Student\StudentsController');
+
+    Route::get('student/{batch_id}/list', 'Admin\Student\StudentsController@studentsList')->name('student.list');
+
     //.........semester
     Route::resource('semester','Admin\Semester\SemestersController',['except'=>['create','show']]);
     //.........course
