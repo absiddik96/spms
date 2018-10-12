@@ -22,7 +22,7 @@ class AdminUsersController extends Controller
 
         // print_r(User::all());
         return view('admin.user.index')
-                ->with('users', User::where('department_id',Auth::user()->department_id)->get());
+                ->with('users', User::where('department_id',Auth::user()->department_id)->orderBy('name')->get());
     }
 
     /**

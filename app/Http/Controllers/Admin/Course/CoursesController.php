@@ -18,7 +18,7 @@ class CoursesController extends Controller
     public function index()
     {
         return view('admin.course.index')
-            ->with('courses', Course::where('department_id',Auth::user()->department_id)->get());
+            ->with('courses', Course::where('department_id',Auth::user()->department_id)->orderBy('name')->get());
     }
 
     /**

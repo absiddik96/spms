@@ -15,7 +15,7 @@ class TeachersController extends Controller
         $teachers = '';
         $teacher_role = UserRole::where('name','teacher')->where('department_id',Auth::user()->department_id)->first();
         if ($teacher_role && $teacher_role->id) {
-            $teachers = User::where('role_id',$teacher_role->id)->where('department_id',Auth::user()->department_id)->get();
+            $teachers = User::where('role_id',$teacher_role->id)->where('department_id',Auth::user()->department_id)->orderBy('name')->get();
         }
         return view('admin.teacher.index')
                 ->with('teachers',$teachers);

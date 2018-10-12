@@ -43,7 +43,7 @@ class CourseEnrollController extends Controller
         ->with('exam_seasons', ExamSeason::all())
         ->with('semesters', Semester::where('department_id',Auth::user()->department_id)->orderBy('semester')->pluck('semester','id')->all())
         ->with('courses', Course::where('department_id',Auth::user()->department_id)->orderBy('name')->pluck('name','id')->all())
-        ->with('teachers', User::where('role_id',$teacher_role->id)->orderBy('name')->get());
+        ->with('teachers', User::where('department_id',Auth::user()->department_id)->orderBy('name')->where('role_id',$teacher_role->id)->orderBy('name')->get());
     }
 
     /**
@@ -106,7 +106,10 @@ class CourseEnrollController extends Controller
             'semester_id.required' => 'The semester field is required.',
         ]);
 
-        $subEnrolls = CourseEnroll::where('exam_season_id',$request->exam_season)->where('semester_id',$request->semester_id)->get();
+        $subEnrolls = CourseEnroll::where('department_id',Auth::user()->department_id)
+                                    ->where('exam_season_id',$request->exam_season)
+                                    ->where('semester_id',$request->semester_id)
+                                    ->get();
 
          return view('admin.courseEnroll.index')
          ->with('exam_seasons', ExamSeason::all())

@@ -27,7 +27,7 @@ class StudentsController extends Controller
 
     public function studentsList($batch_id)
     {
-        $students = Student::where('department_id',Auth::user()->department_id)->where('batch_id', $batch_id)->get();
+        $students = Student::where('department_id',Auth::user()->department_id)->orderBy('exam_roll')->where('batch_id', $batch_id)->get();
         if (!$students->count()) {
             Session::flash('info','No student found');
             return redirect()->back();
