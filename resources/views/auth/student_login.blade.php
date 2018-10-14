@@ -5,6 +5,7 @@
         <title>Student Login</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{!! asset('login/style.css') !!}">
+        <link rel="icon" href="{!! asset('images/logo/favicon.png') !!}" type="image/x-icon" />
 
     </head>
 
@@ -59,7 +60,7 @@
 
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    <a class="underlineHover" href="#">Forgot Password?</a>
+                    <a class="underlineHover" href="#">© Copyright {{ date('Y') }}. Dept of CSE, Gono Bishwabidyalay</a>
                 </div>
 
             </div>

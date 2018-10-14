@@ -5,6 +5,7 @@
         <title>Admin Login</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{!! asset('login/style.css') !!}">
+        <link rel="icon" href="{!! asset('images/logo/favicon.png') !!}" type="image/x-icon" />
 
     </head>
 
@@ -28,7 +29,7 @@
                 <b>Admin Login</b>
 
                 <!-- Login Form -->
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login.submit') }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="admin_login" value="1">
                     <div class="{{ $errors->has('email') || $errors->has('active') ? ' has-error' : '' }}">
@@ -57,7 +58,7 @@
 
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    <a class="underlineHover" href="#">Forgot Password?</a>
+                    <a class="underlineHover" href="#">© Copyright {{ date('Y') }}. Dept of CSE, Gono Bishwabidyalay</a>
                 </div>
 
             </div>

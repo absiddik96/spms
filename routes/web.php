@@ -12,15 +12,15 @@
 */
 
 // Authentication Routes...
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
+$this->get('/', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login/submit', 'Auth\LoginController@login')->name('login.submit');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 //........admin login
 Route::get('admin/login','Admin\User\AdminUsersController@login')->name('admin.login');
 
 //........Student login
-Route::get('/', 'Auth\StudentLoginController@showLoginForm')->name('student.login');
+Route::get('student/login', 'Auth\StudentLoginController@showLoginForm')->name('student.login');
 Route::post('student/login/submit', 'Auth\StudentLoginController@login')->name('student.login.submit');
 
 //.........SUPER ADMIN AREA..........

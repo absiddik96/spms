@@ -8,7 +8,7 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('login.submit') }}">
                         {{ csrf_field() }}
                         @if ($errors->has('active'))
                             <span class="help-block">
