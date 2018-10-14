@@ -98,6 +98,11 @@ Route::group(['prefix'=>'admin','middleware'=>'isAdmin'],function(){
     Route::get('student-room-enrolls/show','Admin\StudentRoomEnroll\StudentRoomEnrollsController@enrolls_show')->name('student-room-enrolls.show');
     Route::get('student-room-enrolls/get_data','Admin\StudentRoomEnroll\StudentRoomEnrollsController@get_data_by_json_where_semester_id')->name('student-room-enrolls.get_data');
     Route::get('student-room-enrolls/unroll','Admin\StudentRoomEnroll\StudentRoomEnrollsController@student_unroll')->name('student-room-enrolls.unroll');
+
+    //.........student room enroll
+    Route::resource('teacher-room-enroll','Admin\TeacherRoomEnroll\TeacherRoomEnrollsController');
+    Route::get('teacher-room-enroll/{exam_season_id}/date/{date_id}','Admin\TeacherRoomEnroll\TeacherRoomEnrollsController@showTeachers')->name('teacher-room-enrolls.show');
+    Route::get('teacher-room-enroll/{tre_id}/is-chief','Admin\TeacherRoomEnroll\TeacherRoomEnrollsController@isChief')->name('teacher-room-enrolls.is-hief');
 });
 
 //.........Teacher common features

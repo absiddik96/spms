@@ -129,6 +129,14 @@
                 </li>
 
                 <li class="xn-openable">
+                    <a href="#"><span class="fa fa-graduation-cap"></span> <span class="xn-text">Teacher Room Enroll</span></a>
+                    <ul>
+                        <li><a href="{{route('teacher-room-enroll.create')}}"><span class="fa fa-plus"></span>Create Enroll</a></li>
+                        <li><a href="{{route('teacher-room-enroll.index')}}"><span class="fa fa-list"></span>Enrolls</a></li>
+                    </ul>
+                </li>
+
+                <li class="xn-openable">
                     <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Level 3</span></a>
                     <ul>
                         <li>

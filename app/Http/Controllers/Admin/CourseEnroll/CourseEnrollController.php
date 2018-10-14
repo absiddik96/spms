@@ -43,7 +43,7 @@ class CourseEnrollController extends Controller
         ->with('exam_seasons', ExamSeason::all())
         ->with('semesters', Semester::where('department_id',Auth::user()->department_id)->orderBy('semester')->pluck('semester','id')->all())
         ->with('courses', Course::where('department_id',Auth::user()->department_id)->orderBy('name')->pluck('name','id')->all())
-        ->with('teachers', User::where('department_id',Auth::user()->department_id)->orderBy('name')->where('role_id',$teacher_role->id)->orderBy('name')->get());
+        ->with('teachers', User::where('department_id',Auth::user()->department_id)->orderBy('name')->where('role_id',$teacher_role->id)->get());
     }
 
     /**
