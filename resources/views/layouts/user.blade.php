@@ -57,7 +57,10 @@
                 <li>
                     <a href="{{route('profile.show',Auth::user()->user_id)}}"><span class="fa fa-user"></span> <span class="xn-text">Profile</span></a>
                 </li>
-            
+                <li>
+                    <a href="{{route('teacher.invigilating.area.season')}}"><span class="fa fa-list"></span> <span class="xn-text">Invigilating Area</span></a>
+                </li>
+
                 <li class="xn-openable">
                     <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Level 3</span></a>
                     <ul>

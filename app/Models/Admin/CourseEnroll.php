@@ -12,6 +12,7 @@ class CourseEnroll extends Model
     {
         return $this->belongsTo('App\Models\Admin\Course');
     }
+    
     public function teacher()
     {
         return $this->belongsTo('App\User','teacher_id','user_id');

@@ -120,6 +120,10 @@ Route::group(['prefix'=>'teacher'],function(){
     Route::post('personal-info/{user_id}','User\PersonalInfo\PersonalInfosController@update')->name('personal-info.update');
     Route::get('personal-info/profile-pic/{user_id}','User\PersonalInfo\PersonalInfosController@profilePic')->name('personal-info.profile-pic.edit');
     Route::post('personal-info/profile-pic/{user_id}','User\PersonalInfo\PersonalInfosController@uploadProfilePic')->name('personal-info.profile-pic.upload');
+
+    // student invigilate area
+    Route::get('invigilating-area/exam-season', 'Teacher\InvigilatingArea\InvigilatingAreasController@examSeason')->name('teacher.invigilating.area.season');
+    Route::get('invigilating-area/{season_id}', 'Teacher\InvigilatingArea\InvigilatingAreasController@invigilatingArea')->name('teacher.invigilating.area');
 });
 
 //.........Student
