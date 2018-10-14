@@ -110,7 +110,7 @@ Route::group(['prefix'=>'teacher'],function(){
     //........dashboard
     Route::get('/dash', 'User\Dash\UserDashController@dash')->name('user.dash');
     //........user profile
-    Route::get('profile/{user_id}','User\Profile\ProfilesController@show')->name('profile.show');
+    // Route::get('profile/{user_id}','User\Profile\ProfilesController@show')->name('profile.show');
     //........user account
     Route::get('account/setting/{user_id}','User\Account\AccountsController@setting')->name('account.setting');
     Route::put('account/setting/{user_id}','User\Account\AccountsController@update')->name('account.update');

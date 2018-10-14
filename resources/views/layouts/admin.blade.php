@@ -135,90 +135,10 @@
                         <li><a href="{{route('teacher-room-enroll.index')}}"><span class="fa fa-list"></span>Enrolls</a></li>
                     </ul>
                 </li>
-
-                <li class="xn-openable">
-                    <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Level 3</span></a>
-                    <ul>
-                        <li>
-                            <a href=""><span class="fa fa-file-o"></span>Slide 1</a>
-                        </li>
-                        <li class="xn-openable">
-                            <a href="#"><span class="fa fa-files-o"></span>Slide 2</a>
-                            <ul>
-                                <li><a href=""><span class="fa fa-plus"></span>Part 1</a></li>
-                                <li><a href=""><span class="fa fa-list"></span>Part 2</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="xn-openable">
-                    <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Level 4</span></a>
-                    <ul>
-                        <li>
-                            <a href=""><span class="fa fa-file-o"></span>Slide 1</a>
-                        </li>
-                        <li class="xn-openable">
-                            <a href="#"><span class="fa fa-files-o"></span>Slide 2</a>
-                            <ul>
-                                <li><a href=""><span class="fa fa-file-o"></span>Page 1</a></li>
-                                <li class="xn-openable">
-                                    <a href="#"><span class="fa fa-files-o"></span>Page 2</a>
-                                    <ul>
-                                        <li><a href=""><span class="fa fa-plus"></span>Part 1</a></li>
-                                        <li><a href=""><span class="fa fa-list"></span>Part 2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-
+                
                 {{-- ------------------------------------------------------
                 Left Menu Bar end
                 ------------------------------------------------------------  --}}
-
-
-
-
-                <li>
-                    <a href=""><span class=""></span> <span class="xn-text"></span></a>
-                </li>
-
-                <li class="xn-openable">
-                    <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Design</span></a>
-                    <ul>
-                    </ul>
-                </li>
-
-                <li class="xn-openable">
-                    <a href="#"><span class="fa fa-sitemap"></span> <span class="xn-text">Navigation Levels</span></a>
-                    <ul>
-                        <li class="xn-openable">
-                            <a href="#">Second Level</a>
-                            <ul>
-                                <li class="xn-openable">
-                                    <a href="#">Third Level</a>
-                                    <ul>
-                                        <li class="xn-openable">
-                                            <a href="#">Fourth Level</a>
-                                            <ul>
-                                                <li><a href="#">Fifth Level</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-
-
-
-
-
             </ul>
             <!-- END X-NAVIGATION -->
         </div>

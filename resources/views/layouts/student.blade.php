@@ -61,15 +61,6 @@
                     <a href="{{route('student.seat.plan.season')}}"><span class="fa fa-list"></span> <span class="xn-text">Seat Plan</span></a>
                 </li>
 
-                {{-- <li class="xn-openable">
-                    <a href="#"><span class="fa fa-group"></span> <span class="xn-text">User</span></a>
-                    <ul>
-                        <li><a href="{{route('user.create')}}"><span class="fa fa-plus"></span>Create User</a></li>
-                        <li><a href="{{route('user.index')}}"><span class="fa fa-list"></span>Admin List</a></li>
-                        <li><a href="{{route('super-admin.list')}}"><span class="fa fa-list"></span>Super Admin List</a></li>
-                    </ul>
-                </li> --}}
-
                 {{-- ------------------------------------------------------
                 Left Menu Bar end
                 ------------------------------------------------------------  --}}
