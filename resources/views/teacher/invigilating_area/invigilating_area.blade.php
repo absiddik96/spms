@@ -42,7 +42,7 @@
                                                 @if ($ia->invigilators)
                                                     @foreach ($ia->invigilators as $invigilator)
                                                         <tr>
-                                                            <td width="4%">Date</td>
+                                                            <td width="4%">Invigilator</td>
                                                             <td width="1%">:</td>
                                                             <td width="94%">
                                                                 {{ $invigilator->invigilator->name }} {{ $invigilator->is_chief?'( Chief )':'' }}
